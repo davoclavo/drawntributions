@@ -1,17 +1,15 @@
-from git import Repo, Commit, Actor
+from git import Commit, Actor
 from cStringIO import StringIO
 from gitdb import IStream
+import os
+from time import time
 
 # TO DO
 # =====
-# Intialize git repo using GitPython
-# Create a custom Committer and Author - using a name and an email
+# Use this file as a module
 
-path = '/home/dav/dev/testgit/'
-repo = Repo(path)
-filename = path + "bulgogi"
-
-def datecommit(date):
+def datecommit(repo, date):
+    filename = repo.working_dir + '/le_file'
     try:
         data = repo.head.commit.hexsha
     except ValueError:

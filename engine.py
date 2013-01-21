@@ -1,5 +1,13 @@
 import datetime
+from git import Repo
 from gitutils import datecommit
+import os
+
+path = os.getcwd()
+foldername = datetime.datetime.now().strftime('%s')
+repopath = path + '/repos/' + foldername + '/'
+repo = Repo.init(repopath)
+
 
 drawing = [
   [1,0,0,0,0,0,1,1,1,0,0,1,0,0,1,0,1,0,0,0,0,1,1,1,1,0,0,1,1,0,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1]
@@ -29,7 +37,7 @@ for i in range(0,len(drawing[0])*7):
   if drawing[weekday(date)][i/7] == 1:
     print str(date) + ' HIT GITHUB'
     for j in range(0,60):
-      datecommit(date)
+      datecommit(repo, date)
   else:
     print str(date) + ' DONT HIT GITHUB'
-    datecommit(date)
+    datecommit(repo, date)

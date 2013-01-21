@@ -1,12 +1,6 @@
 from git import Commit, Actor
 from cStringIO import StringIO
 from gitdb import IStream
-import os
-from time import time
-
-# TO DO
-# =====
-# Use this file as a module
 
 def datecommit(repo, date):
     filename = repo.working_dir + '/le_file'

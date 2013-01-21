@@ -24,7 +24,7 @@ def datecommit(date):
     newcommit(repo, str(date), int(date.strftime('%s')))
 
 
-def newcommit(repo, message, date):
+def newcommit(repo, message, date, name=None, email=None):
     """Creates a commit object with a custom date.
     :param repo: Repo object the commit should be part of
     :param tree: Tree object
@@ -45,8 +45,13 @@ def newcommit(repo, message, date):
 
     # Committer and Author info
     cr = repo.config_reader()
-    committer = Actor.committer(cr)
-    author = Actor.author(cr)
+    if name == None or email == None:
+        actor = Actor.committer(cr)
+    else:
+        actor = Actor(name, email)
+
+    committer = actor
+    author = actor
 
     # Date
     # offset = altzone # 3600*offsethours
